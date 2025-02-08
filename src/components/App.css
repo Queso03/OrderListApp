@@ -1,0 +1,588 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: #3d3d3d;
+}
+
+input {
+    font-family: 'Work Sans', sans-serif;
+}
+
+input:focus {
+    outline: none;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+}
+
+.add-customer {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.add-customer input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+
+.add-customer button {
+    padding: 10px 15px;
+    white-space: nowrap;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #007bff;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.add-customer button:hover {
+    background: #0056b3;
+    cursor: pointer;
+}
+
+.add-customer button:active {
+    background: #004494;
+}
+
+.customer-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.3fr;
+    padding: 0 10px;
+}
+
+.filter-sort-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.customer-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.customer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.3fr;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 0px;
+    transition: background 0.3s;
+}
+
+.no-orders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 20px;
+    color: #919191;
+    border-top: 1px solid #ccc;
+    margin: 0;
+}
+
+.customer:hover {
+    background: #f0f0f0;
+}
+
+.customer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.customer-info p {
+    margin: 0;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.customer-info h6 {
+    margin: 0;
+    color: #919191;
+}
+
+.Ready {
+    display: flex;
+    justify-content: center;
+    background: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    width: 100px;
+}
+
+.Pending {
+    display: flex;
+    justify-content: center;
+    background: #ffc107;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    width: 100px;
+}
+
+.Completed {
+    display: flex;
+    justify-content: center;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    width: 100px;
+}
+
+.options-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.options-button {
+    display: flex;
+    padding: 6px;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.options-button:hover {
+    background: #ccc;
+    cursor: pointer;
+}
+
+.delete-completed-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: background 0.3s;
+    margin: 15px;
+    padding: 10px;
+}
+
+.delete-completed-button:hover {
+    background: #ccc;
+    cursor: pointer;
+}
+
+.options {
+    position: absolute;
+    background: #f9f9f9;
+    z-index: 1;
+    right: 70%;
+    bottom: 70%;
+    width: 150px;
+    height: auto;
+    padding: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    border-radius: 10px;
+}
+
+.option {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.option:hover {
+    background: #f0f0f0;
+}
+
+.status-options {
+    position: absolute;
+    background: #f9f9f9;
+    z-index: 1;
+    right: 70%;
+    bottom: 70%;
+    width: 150px;
+    height: auto;
+    padding: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.status-options > div {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.status-options .Completed:hover {
+    background: #0056b3;
+}
+
+.status-options .Ready:hover {
+    background: #1e7e34;
+}
+
+.status-options .Pending:hover {
+    background: #d39e00;
+}
+
+/* Modal styles */
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ReactModal__Content {
+    position: relative;
+    inset: auto;
+    margin: auto;
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: auto;
+    border-radius: 5px;
+    outline: none;
+    padding: 20px;
+    width: 80%;
+    height: 90%;
+    max-width: none;
+    max-height: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-button {
+    padding: 5px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #f9f9f9;
+    transition: background 0.3s;
+    width: 20px;
+    height: 20px;
+}
+
+.close-button:hover {
+    background: #f0f0f0;
+}
+
+.close-button:active {
+    background: #e7e7e7;
+}
+
+.order-info {
+    margin-bottom: 15px;
+}
+
+.order-info span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.order-info input {
+    width: 99%;
+    padding: 8px;
+    border: none;
+    border-bottom: #ddd 1px solid;
+}
+
+.order-info input:focus {
+    outline: none;
+}
+
+.add-column {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-column img {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004494;
+}
+
+.table-header {
+    display: grid;
+    overflow-x: auto;
+    grid-template-columns: 1fr 1fr 1fr 0.3fr;
+    background: #f9f9f9;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-header p {
+    margin: 0;
+    color: #919191;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-row {
+    display: grid;
+    overflow-x: auto;
+    grid-template-columns: 1fr 1fr 1fr 0.3fr;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-row:hover {
+    background: #f0f0f0;
+}
+
+.table-row div {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.table-row div:last-child {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.3fr;
+    padding: 10px;
+}
+
+.input-row div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.input-row input {
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 80%;
+}
+
+.input-row button {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.input-row button:hover {
+    background-color: #0056b3;
+}
+
+.input-row button:active {
+    background-color: #004494;
+}
+
+.delete-button {
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    filter: brightness(0.8);
+}
+
+.delete-button:active {
+    filter: brightness(0.6);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media (max-width: 768px) {
+  #root {
+    width: 90%;
+    margin: 0;
+  }
+
+  .customer-header h4 {
+    display: none;
+  }
+
+  .customer-header {
+    display: flex;
+  }
+  .filter-sort-container {
+    justify-content: space-around;
+  }
+
+  .filter-sort-container > div {
+    flex: 1;
+  }
+
+  .customer {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 0px;
+    transition: background 0.3s;
+  }
+
+  .customer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    width:auto;
+    overflow: hidden;
+  }
+
+  .customer-info p {
+    max-width: 100%;
+  }
+
+  .options-container {
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+
+  .options {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .option {
+    padding: 10px;
+  }
+
+  .status-options {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .status-options > div {
+    padding: 10px;
+  }
+
+  .Pending, .Ready, .Completed {
+    width: 90%;
+    align-items: center;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .delete-column img {
+    width: 14px;
+  }
+
+
+  .add-column img {
+    width: 18px;
+  }
+
+  .input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-row div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-row input {
+    width: 100%;
+  }
+}
+
+@media (max-width:1024px) {
+  #root {
+    width: 90%;
+    margin: 0;
+  }
+  
+}
