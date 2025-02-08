@@ -483,6 +483,7 @@ button:active {
 
   .customer-header {
     display: flex;
+    flex-direction:row-reverse;
   }
   .filter-sort-container {
     justify-content: space-around;
