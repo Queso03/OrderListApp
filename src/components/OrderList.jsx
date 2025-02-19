@@ -67,7 +67,9 @@ export default function OrderList() {
     }
 
     function handleSubmit() {
-        if (!title) return;
+        if (!title) {
+            alert('Please enter a name');
+            return};
         const newOrder = {id : crypto.randomUUID(), name: title, status: "Pending", phone: '', address: '', date: new Date().toISOString().split("T")[0], products: []};
         setList([...list, newOrder]);
         setTitle('');

@@ -34,7 +34,10 @@ export default function List({ order, isOpen, onClose }) {
     }
 
     function handleSubmit() {
-        if (!name || !amount || !price) return;
+        if (!name || !amount || !price) {
+            alert('Please fill all fields');
+            return;
+        }
         const newProduct = {
             id: crypto.randomUUID(), 
             name: name, 
@@ -56,6 +59,10 @@ export default function List({ order, isOpen, onClose }) {
     }}
 
     function handleClose() {
+        if (!title) {
+            alert('Please enter a name');
+            return;
+        }
         onClose({id : order.id, name: title, status: status, phone: phone, address: address, date: date, products: products});
     }
 
@@ -68,7 +75,7 @@ export default function List({ order, isOpen, onClose }) {
         >   
             <div className="modal-header">
                 <h2>Order form</h2>
-                <img src={CloseLogo} className='close-button' onClick={handleClose} width="20"></img>
+                <img alt="close-icon" src={CloseLogo} className='close-button' onClick={handleClose} width="20"></img>
             </div>
 
                 
@@ -107,7 +114,7 @@ export default function List({ order, isOpen, onClose }) {
                                     <div>{product.name}</div>
                                     <div>{product.amount}</div>
                                     <div>{product.price}$</div>
-                                    <div className='delete-column' ><img src={DeleteIcon} width="20" className="delete-button" onClick={handleDelete(product)}></img></div>
+                                    <div className='delete-column' ><img alt="delete-icon" src={DeleteIcon} width="20" className="delete-button" onClick={handleDelete(product)}></img></div>
                                 </div>
 
                             </>
@@ -118,7 +125,7 @@ export default function List({ order, isOpen, onClose }) {
                         <div><input className='table-input' type="text" onChange={(event) => handleChange(event, setName)} value={name} placeholder="Enter product name"></input></div>
                         <div><input className='table-input' type="text" onChange={(event) => handleChange(event, setAmount)} value={amount} placeholder="Enter amount"></input></div>
                         <div><input className='table-input' type="text" onChange={(event) => handleChange(event, setPrice)} value={price} placeholder="Enter unit price"></input></div>
-                        <div className='add-column'><img width="28" src={AddIcon} onClick={handleSubmit}></img></div>
+                        <div className='add-column'><img alt="add-icon" width="28" src={AddIcon} onClick={handleSubmit}></img></div>
                     </div>
                 </div>
                 <h3>Total: {total}$</h3>
